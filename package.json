@@ -1,0 +1,11 @@
+{
+  "name": "express-ratelimit-sample",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "repository": "https://github.com/ahyaemon/express-ratelimit-sample.git",
+  "author": "ahyaemon <iamahyaemon@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
