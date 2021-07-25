@@ -1,12 +1,6 @@
-curl http://localhost:3000 -H "Token:test-token"
-echo ""
-curl http://localhost:3000 -H "Token:test-token"
-echo ""
-curl http://localhost:3000 -H "Token:test-token"
-echo ""
-curl http://localhost:3000 -H "Token:test-token"
-echo ""
-curl http://localhost:3000 -H "Token:test-token"
-echo ""
-curl -i http://localhost:3000 -H "Token:test-token"
-echo ""
+for i in $(seq 1 20)
+do
+  echo $i
+  curl http://localhost:3000 -H "Token:Btest-token"
+  echo ""
+done

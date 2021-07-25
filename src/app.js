@@ -7,16 +7,20 @@ const RedisStore = require("rate-limit-redis");
 const limiter = rateLimit({
     windowMs: 1000,
     max: (req, res) => {
-        console.log('limiter max')
-        if (req.headers.token) {
-            return 5
+        const token = req.headers.token
+        if(token) {
+            if (token.startsWith('A')) {
+                return 10
+            } else if (token.startsWith('B')) {
+                return 20
+            }
         }
 
         return 3
     },
     keyGenerator: (req, res) => {
-        console.log('limiter keyGenerator')
-        if (req.headers.token) {
+        const token = req.headers.token
+        if (token) {
             return req.headers.token
         }
         return req.ip
