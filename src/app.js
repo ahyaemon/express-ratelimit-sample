@@ -5,13 +5,31 @@ const rateLimit = require("express-rate-limit");
 
 const limiter = rateLimit({
     windowMs: 1000,
-    max: 3,
+    max: (req, res) => {
+        console.log('limiter max')
+        if (req.headers.token) {
+            return 5
+        }
+
+        return 3
+    },
+    keyGenerator: (req, res) => {
+        console.log('limiter keyGenerator')
+        if (req.headers.token) {
+            return req.headers.token
+        }
+        return req.ip
+    },
 });
 
-app.use(limiter);
+app.use(limiter)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
+})
+
+app.get('/hello', (req, res) => {
+    res.send('hello')
 })
 
 app.listen(port, () => {
