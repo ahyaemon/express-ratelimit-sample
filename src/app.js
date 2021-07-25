@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const rateLimit = require("express-rate-limit");
+const RedisStore = require("rate-limit-redis");
 
 const limiter = rateLimit({
     windowMs: 1000,
@@ -20,6 +21,10 @@ const limiter = rateLimit({
         }
         return req.ip
     },
+    store: new RedisStore({
+        expiry: 1,
+        redisURL: 'redis://localhost:6379'
+    }),
 });
 
 app.use(limiter)
