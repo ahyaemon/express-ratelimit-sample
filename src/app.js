@@ -37,8 +37,8 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/hello', (req, res) => {
-    res.send('hello')
+app.get('/dog/:id', (req, res) => {
+    res.json(req.params)
 })
 
 app.listen(port, () => {
